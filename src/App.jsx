@@ -8,7 +8,7 @@ const App = () => {
   
     <>
 
-      <div className="bg-slate-300 h-screen text-white flex">
+      <div className="bg-slate-300 h-screen text-black flex">
 
         <AuthProvider>
 
