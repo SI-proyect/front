@@ -1,7 +1,24 @@
+import { useState } from 'react'
+
 const Login = () => {
+
+    const [user, setUser] = useState({
+        email: "",
+        password: ""
+    })
+
     return (
         <>
-            <h1>Login</h1>
+            <div>
+
+                <form>
+
+                    <input type="email" name="email" id="email" />
+                    <input type="password" name="password" id="password" />
+                
+                </form>
+
+            </div>
         </>
     )
 }

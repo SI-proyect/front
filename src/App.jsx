@@ -1,5 +1,6 @@
 import {Routes, Route} from "react-router-dom"
 import { Home, Login, Register } from "./index"
+import { AuthProvider } from './context/authContext'
 
 const App = () => {
 
@@ -9,11 +10,15 @@ const App = () => {
 
       <div className="bg-slate-300 h-screen text-white flex">
 
-        <Routes>
-          <Route path="/" element={<Home />}/>
-          <Route path="/login" element={<Login />}/>
-          <Route path="/register" element={<Register />}/>
-        </Routes>
+        <AuthProvider>
+
+          <Routes>
+            <Route path="/" element={<Home />}/>
+            <Route path="/login" element={<Login />}/>
+            <Route path="/register" element={<Register />}/>
+          </Routes>
+          
+        </AuthProvider>
 
       </div>
 
