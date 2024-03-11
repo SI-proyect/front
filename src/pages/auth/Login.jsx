@@ -13,7 +13,7 @@ const Login = () => {
 
     const [error, setError] = useState()
 
-    const { login, loginWithGoogle } = useAuth()
+    const { login, loginWithGoogle, resetPassword } = useAuth()
     const navigate = useNavigate()
 
     const handleChange = ({ target: {name, value}}) => {
@@ -59,6 +59,19 @@ const Login = () => {
        
     }
 
+    const handleResetPassword = async () => {
+        if (!user.email) return setError("Ingresa un correo")
+
+        try{
+
+            await resetPassword(user.email)
+            setError("Se ha enviado un enlace para recuperar la contraseña")
+
+        } catch(error) {
+            setError(error.message)
+        }
+    }
+
    return (
     
     <div className="w-full max-w-xs m-auto">
@@ -95,7 +108,20 @@ const Login = () => {
 
             </div>
 
-            <button className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</button>
+            <div className="flex items-center justify-between">
+
+                <button className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</button>
+
+                <a 
+                    className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" 
+                    href="#!"
+                    onClick={handleResetPassword}
+                >
+                        ¿Olvidaste tu contraseña?
+                </a>
+
+            </div>
+
         </form>
 
         <p className="my-4 text-sm flex justify-between px-3">¿No tienes una cuenta? <Link to="/register">Registrate</Link></p>
