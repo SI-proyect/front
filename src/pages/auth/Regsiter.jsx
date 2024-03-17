@@ -81,7 +81,7 @@ const Register = () => {
 
             </div>
 
-            <button className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Register</button>
+            <button className="bg-lime-500 hover:bg-lime-700 text-white text-sm font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Register</button>
         </form>
 
         <p className="my-4 text-sm flex justify-between px-3">¿Ya tienes una cuenta? <Link to="/login">Inicia Sesión</Link></p>

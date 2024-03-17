@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { createContext, useContext, useEffect, useState } from "react";
 import { 
     createUserWithEmailAndPassword, 
@@ -58,3 +59,7 @@ export function AuthProvider({children}) {
         </authContext.Provider>
     )
 }
+
+AuthProvider.propTypes = {
+    children: PropTypes.element.isRequired
+  };
