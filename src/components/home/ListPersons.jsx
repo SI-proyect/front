@@ -3,9 +3,32 @@ import { Link } from "react-router-dom";
 import user from "../../assets/ico/ico_user.png";
 
 const ListPersons = ({ naturalPeople }) => {
+  // const onFileUpload = (file) => {
+  //   // Aquí puedes implementar la lógica para guardar el archivo en el proyecto
+  //   localStorage.setItem("rut", file);
+  //   console.log("Archivo subido:", file);
+  // };
+
+  // const handleFileUpload = (event) => {
+  //   const file = event.target.files[0];
+  //   onFileUpload(file);
+  // };
+
   return (
     <div className="bg-white w-full rounded py-3 px-4">
-      <h1 className="text-xl mb-2 ml-3">Personas Naturales</h1>
+      <div className="flex justify-between">
+        <h1 className="text-xl mb-2 ml-3">Personas Naturales</h1>
+        {/* <button className="bg-lime-600 text-white px-2 py-1">
+          Agregar Nueva
+        </button> */}
+
+        {/* <input
+          className="bg-lime-600 text-white px-2 py-1"
+          type="file"
+          accept=".jpg,.jpeg,.png"
+          onChange={handleFileUpload}
+        /> */}
+      </div>
       <ul className="divide-y divide-gray-100 w-all">
         {naturalPeople.map((pers, index) => (
           <Link key={index} to={"/person/" + index}>
