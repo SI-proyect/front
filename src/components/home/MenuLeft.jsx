@@ -45,7 +45,7 @@ const MenuLeft = ({ user }) => {
   }
 
   return (
-    <div className="bg-white max-w-80 h-screen p-4 fixed top-0 left-0 border border-gray-500">
+    <div className="bg-white w-screen md:max-w-80 h-screen p-4 fixed top-0 left-0 border border-gray-500">
       <button
         className="relative top-0 right-0 z-50 block py-1 px-2 bg-red-600 text-white text-xs rounded-md"
         onClick={toggleMenu}

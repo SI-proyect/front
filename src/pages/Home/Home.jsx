@@ -8,7 +8,7 @@ const Home = () => {
   // const authContext = useAuth()
   const { user, logout, loading } = useAuth();
 
-  const { naturalPeople } = useNaturalPeople();
+  const { dataPeople, loadingPeople, error } = useNaturalPeople();
 
   const handleLogout = async () => {
     try {
@@ -22,6 +22,8 @@ const Home = () => {
 
   if (loading) return <h1>Loading</h1>;
 
+  if (loadingPeople) return <h1>Cargando clientes</h1>;
+
   return (
     <div>
       <NavBar logout={handleLogout} />
@@ -29,7 +31,13 @@ const Home = () => {
       <div className="w-screen m-auto mt-5 px-10 text-black flex justify-between">
         <MenuLeft user={user} />
 
-        <ListPersons naturalPeople={naturalPeople} />
+        {error ? (
+          <h1>Hubo un error al traer los clientes</h1>
+        ) : loadingPeople ? (
+          <h1>Cargando clientes</h1>
+        ) : (
+          <ListPersons naturalPeople={dataPeople} />
+        )}
       </div>
     </div>
   );

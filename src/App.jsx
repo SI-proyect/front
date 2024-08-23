@@ -1,5 +1,12 @@
 import { Routes, Route } from "react-router-dom";
-import { Home, Login, Register, DetailPerson, ProtectedRoute } from "./index";
+import {
+  Home,
+  Login,
+  Register,
+  DetailPerson,
+  FormNewPerson,
+  ProtectedRoute,
+} from "./index";
 import { AuthProvider } from "./context/authContext";
 import { NaturalPeopleProvider } from "./context/NaturalPeopleContext";
 
@@ -26,6 +33,17 @@ const App = () => {
                 <NaturalPeopleProvider>
                   <ProtectedRoute>
                     <DetailPerson />
+                  </ProtectedRoute>
+                </NaturalPeopleProvider>
+              }
+            />
+
+            <Route
+              path="/addPerson"
+              element={
+                <NaturalPeopleProvider>
+                  <ProtectedRoute>
+                    <FormNewPerson />
                   </ProtectedRoute>
                 </NaturalPeopleProvider>
               }

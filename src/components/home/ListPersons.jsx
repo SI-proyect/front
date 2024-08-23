@@ -16,8 +16,8 @@ const ListPersons = ({ naturalPeople }) => {
 
   return (
     <div className="bg-white w-full rounded py-3 px-4">
-      <div className="flex justify-between">
-        <h1 className="text-xl mb-2 ml-3">Personas Naturales</h1>
+      <div className="flex justify-between items-center">
+        <h1 className="text-xl ml-3">Personas Naturales</h1>
         {/* <button className="bg-lime-600 text-white px-2 py-1">
           Agregar Nueva
         </button> */}
@@ -28,10 +28,16 @@ const ListPersons = ({ naturalPeople }) => {
           accept=".jpg,.jpeg,.png"
           onChange={handleFileUpload}
         /> */}
+
+        <Link to="/addPerson">
+          <button className="bg-lime-600 text-white px-2 py-1 rounded-sm">
+            Agregar
+          </button>
+        </Link>
       </div>
-      <ul className="divide-y divide-gray-100 w-all">
+      <ul className="divide-y mt-2 divide-gray-100 w-all">
         {naturalPeople.map((pers, index) => (
-          <Link key={index} to={"/person/" + index}>
+          <Link key={index} to={"/person/" + pers.cc}>
             <li className="transition ease-in-out delay-150 flex justify-between gap-x-6 py-5 px-2 w-all hover:bg-lime-100 rounded">
               <div className="flex min-w-0 gap-x-4">
                 <img
@@ -42,10 +48,10 @@ const ListPersons = ({ naturalPeople }) => {
 
                 <div className="min-w-0 flex-auto">
                   <p className="text-sm font-semibold leading-6 text-gray-900">
-                    {pers.nombre}
+                    {pers.name}
                   </p>
                   <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                    {pers.email}
+                    {pers.mail}
                   </p>
                 </div>
               </div>
@@ -54,7 +60,7 @@ const ListPersons = ({ naturalPeople }) => {
                   <strong>C.C.</strong> {pers.cc}
                 </p>
                 <p className="mt-1 text-xs leading-5 text-gray-500">
-                  <strong>Telefono:</strong> {pers.telefono}
+                  <strong>Telefono:</strong> {pers.telephone}
                 </p>
               </div>
             </li>
@@ -68,15 +74,17 @@ const ListPersons = ({ naturalPeople }) => {
 ListPersons.propTypes = {
   naturalPeople: PropTypes.arrayOf(
     PropTypes.shape({
-      nombre: PropTypes.string.isRequired,
-      cc: PropTypes.string.isRequired,
-      nit: PropTypes.string.isRequired,
-      digi_very: PropTypes.string.isRequired,
-      direccion: PropTypes.string.isRequired,
-      email: PropTypes.string.isRequired,
-      telefono: PropTypes.string.isRequired,
-      act_econo: PropTypes.arrayOf(PropTypes.string).isRequired,
-      respo_fis: PropTypes.arrayOf(PropTypes.string).isRequired,
+      id: PropTypes.number.isRequired,
+      cc: PropTypes.number.isRequired,
+      nit: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      address: PropTypes.string.isRequired,
+      telephone: PropTypes.number.isRequired,
+      mail: PropTypes.string.isRequired,
+      user: PropTypes.number.isRequired,
+      notes: PropTypes.string.isRequired,
+      fiscal_responsibilities: PropTypes.bool.isRequired,
+      //fiscal_responsibilities: PropTypes.arrayOf(PropTypes.string).isRequired,
       // Agrega más PropTypes según sea necesario
     })
   ).isRequired,

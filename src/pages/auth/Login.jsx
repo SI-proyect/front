@@ -11,7 +11,7 @@ const Login = () => {
 
   const [error, setError] = useState();
 
-  const { login, loginWithGoogle, resetPassword } = useAuth();
+  const { login, loginWithGoogle, resetPassword, setIsLogged } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = ({ target: { name, value } }) => {
@@ -24,6 +24,7 @@ const Login = () => {
 
     try {
       await login(user.email, user.password);
+      setIsLogged(true);
       navigate("/");
     } catch (error) {
       console.log(error.code);
@@ -43,6 +44,7 @@ const Login = () => {
   const handleGoogleSignIn = async () => {
     try {
       await loginWithGoogle();
+      setIsLogged(true);
       navigate("/");
     } catch (error) {
       console.error(error.message);
