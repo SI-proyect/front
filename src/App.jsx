@@ -9,11 +9,12 @@ import {
 } from "./index";
 import { AuthProvider } from "./context/authContext";
 import { NaturalPeopleProvider } from "./context/NaturalPeopleContext";
+import { PersonDetailProvider } from "./context/PersonDetailContext";
 
 const App = () => {
   return (
     <>
-      <div className="bg-slate-300 h-screen text-black flex flex-col items-center">
+      <div className="bg-slate-200 h-screen text-black flex flex-col items-center">
         <AuthProvider>
           <Routes>
             <Route
@@ -28,13 +29,13 @@ const App = () => {
             />
 
             <Route
-              path="/person/:id"
+              path="/person/:cc"
               element={
-                <NaturalPeopleProvider>
+                <PersonDetailProvider>
                   <ProtectedRoute>
                     <DetailPerson />
                   </ProtectedRoute>
-                </NaturalPeopleProvider>
+                </PersonDetailProvider>
               }
             />
 

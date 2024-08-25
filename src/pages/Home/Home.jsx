@@ -1,12 +1,13 @@
 // import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../context/authContext";
 import { useNaturalPeople } from "../../context/NaturalPeopleContext";
+import { NavBar, ListPersons } from "./index";
 
-import { NavBar, ListPersons, MenuLeft } from "./index";
+import "../../styles/loader.css";
 
 const Home = () => {
   // const authContext = useAuth()
-  const { user, logout, loading } = useAuth();
+  const { logout, loading } = useAuth();
 
   const { dataPeople, loadingPeople, error } = useNaturalPeople();
 
@@ -20,21 +21,17 @@ const Home = () => {
     // navigate('/login')
   };
 
-  if (loading) return <h1>Loading</h1>;
-
-  if (loadingPeople) return <h1>Cargando clientes</h1>;
+  if (loading || loadingPeople) return <div className="loader"></div>;
 
   return (
     <div>
       <NavBar logout={handleLogout} />
 
       <div className="w-screen m-auto mt-5 px-10 text-black flex justify-between">
-        <MenuLeft user={user} />
+        {/* <MenuLeft user={user} /> */}
 
         {error ? (
           <h1>Hubo un error al traer los clientes</h1>
-        ) : loadingPeople ? (
-          <h1>Cargando clientes</h1>
         ) : (
           <ListPersons naturalPeople={dataPeople} />
         )}
