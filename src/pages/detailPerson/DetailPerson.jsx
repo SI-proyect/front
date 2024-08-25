@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useAuth } from "../../context/authContext";
 import { usePersonDetail } from "../../context/PersonDetailContext";
 import { useParams } from "react-router-dom";
-import { NavBar } from "./index";
-import perfil from "../../assets/perfil/perfil_p.avif";
+import { NavBar, PersonalInformation } from "./index";
+import "../../styles/loader.css";
 
 const DetailPerson = () => {
   // const authContext = useAuth()
@@ -30,76 +30,34 @@ const DetailPerson = () => {
     // navigate('/login')
   };
 
-  if (loadingPerson) return <div>Buscando datos del usuario</div>;
-  if (error) return <div>Hubo algún error al traer la información</div>;
+  if (loadingPerson) return <div className="loader"></div>;
+  if (error)
+    return (
+      <h1 className="text-2xl font-semibold m-auto text-center">
+        Hubo algún error al traer la información
+      </h1>
+    );
 
   return (
     <div>
       <NavBar logout={handleLogout} />
 
-      <div className="w-screen m-auto mt-5 px-4 text-black flex justify-between">
+      <div className="w-3/5 m-auto mt-5  text-black flex flex-col justify-between bg-white rounded-md overflow-hidden drop-shadow-md">
         {/* <MenuLeft user={user} /> */}
 
-        <div className="bg-white w-full py-16 px-10 lg:px-16 flex flex-col rounded">
-          <div className="w-full mb-5 px-5 py-4 flex flex-col md:flex-row justify-around items-center border border-lime-600 rounded shadow-lg">
-            <div className="w-20 h-20 overflow-hidden">
-              <img
-                className="rounded-full w-full h-full object-cover object-center"
-                src={perfil}
-                alt="Imagen de Persona Natural"
-              />
-            </div>
-
-            <div className="w-2/3 h-all ml-6 md:border-r flex flex-col md:flex-row">
-              <div className="md:pr-5 flex flex-col items-center justify-center text-center md:border-r-2 md:border-lime-600">
-                <div className="text-3xl text-center">{dataPerson.name}</div>
-                {/* <button className="">
-                  {" "}
-                  <button className="" onClick={() => handleSeeInfo}></button>
-                  Ver Información personal
-                </button> */}
-              </div>
-
-              <div className="flex flex-col justify-evenly hidden md:block">
-                <div className="flex ml-5 text-base items-center">
-                  <div className="text-sm text-gray-800">
-                    <strong className="text-lime-700">C.C.</strong>{" "}
-                    {dataPerson.cc}
-                  </div>
-                  <div className="text-sm text-gray-800 ml-3 flex items-center">
-                    <strong className="text-lime-700">Tel: </strong>{" "}
-                    {dataPerson.telephone}
-                  </div>
-
-                  <div className="ml-3">
-                    <strong className="text-lime-700 ">Dirección: </strong>{" "}
-                    {dataPerson.address}
-                  </div>
-                </div>
-
-                <div className="flex ml-5 text-base">
-                  <div className="">
-                    <strong className="text-lime-700">Email: </strong>{" "}
-                    {dataPerson.mail}
-                  </div>
-                  <div className="ml-3">
-                    <strong className="text-lime-700">NIT: </strong>{" "}
-                    {dataPerson.nit}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="w-all m-auto hover:text-lime-700">
-              <button>Actualizar Información Personal</button>
-            </div>
+        <div className="w-full bg-gradient-to-r from-green-600 to-green-400 px-4 py-5 sm:px-6 flex items-center">
+          <div className="w-11 h-11 bg-slate-200 rounded-full flex justify-center items-center text-black text-xl font-bold">
+            {dataPerson.name.charAt(0)}
           </div>
-
-          {/* <div className="flex">
-            <RutNaturalPerson person={dataPerson} />
-            <div>Datos Declaración de Renta</div>
-          </div> */}
+          <div className="ml-4 flex-1">
+            <h3 className="text-2xl leading-6 font-bold text-white">
+              {dataPerson.name}
+            </h3>
+            <p className="mt-1 text-green-100 text-sm">{dataPerson.cc}</p>
+          </div>
         </div>
+
+        <PersonalInformation dataPerson={dataPerson} />
       </div>
     </div>
   );
