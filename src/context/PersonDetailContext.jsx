@@ -35,9 +35,9 @@ export const PersonDetailProvider = ({ children }) => {
       };
 
       fetchData(); // Llamar a la función
-    } else {
-      console.log("No hay cc");
-    }
+    } // else {
+    //   console.log("No hay cc");
+    // }
   }, [cc]);
 
   return (

@@ -7,6 +7,7 @@ import "../../styles/loader.css";
 const Home = () => {
   // const authContext = useAuth()
   const { logout, loading } = useAuth();
+  // console.log(user);
 
   const { dataPeople, loadingPeople, error } = useNaturalPeople();
 
