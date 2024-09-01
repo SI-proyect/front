@@ -7,12 +7,14 @@ import {
   PersonalInformation,
   PersonComment,
   DeclaracionRenta,
+  Rut,
+  UpDocuments,
 } from "./index";
 import "../../styles/loader.css";
 
 const DetailPerson = () => {
   // const authContext = useAuth()
-  const { logout, user } = useAuth();
+  const { user } = useAuth();
 
   const { dataPerson, loadingPerson, error, setCC } = usePersonDetail();
 
@@ -25,16 +27,6 @@ const DetailPerson = () => {
     }
   }, [cc, setCC]); // Dependencia de cc y setCC
 
-  const handleLogout = async () => {
-    try {
-      await logout();
-    } catch (error) {
-      console.error(error.message);
-    }
-
-    // navigate('/login')
-  };
-
   if (loadingPerson) return <div className="loader"></div>;
   if (error)
     return (
@@ -43,21 +35,12 @@ const DetailPerson = () => {
       </h1>
     );
 
-  const dataDeclaracion = {
-    ingresosBrutos: "$120.000.000",
-    ingresosNetos: "$95.000.000",
-    deducciones: "$25.000.000",
-    impuestoPagar: "$18.500.000",
-  };
-
   return (
     <div>
-      <NavBar logout={handleLogout} />
+      <NavBar />
 
       <div className="mt-6 flex flex-wrap justify-around items-start gap-6">
         <div className="w-5/12 h-auto  text-black flex flex-col justify-between bg-white rounded-md overflow-hidden transition-all duration-300 hover:shadow-lg">
-          {/* <MenuLeft user={user} /> */}
-
           <div className="w-full bg-gradient-to-r from-green-600 to-green-400 px-4 py-5 sm:px-6 flex items-center">
             <div className="w-11 h-11 bg-slate-200 rounded-full flex justify-center items-center text-black text-xl font-bold">
               {dataPerson.name.charAt(0)}
@@ -75,14 +58,15 @@ const DetailPerson = () => {
 
         <div className="w-5/12 h-fit">
           <PersonComment comment={dataPerson.notes} user={user} />
+          <UpDocuments />
         </div>
 
         <div className="w-5/12 h-auto">
-          <DeclaracionRenta dataDeclaracion={dataDeclaracion} />
+          <DeclaracionRenta />
         </div>
 
         <div className="w-5/12 h-auto">
-          <DeclaracionRenta dataDeclaracion={dataDeclaracion} />
+          <Rut nit={dataPerson.nit} />
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ import { PersonDetailProvider } from "./context/PersonDetailContext";
 const App = () => {
   return (
     <>
-      <div className="bg-slate-200 h-screen text-black flex flex-col items-center">
+      <div className="pb-3 bg-slate-200 h-screen text-black flex flex-col items-center">
         <AuthProvider>
           <Routes>
             <Route

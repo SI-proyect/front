@@ -1,6 +1,13 @@
 import PropTypes from "prop-types";
 
-const DeclaracionRenta = ({ dataDeclaracion }) => {
+const DeclaracionRenta = () => {
+  const dataDeclaracion = {
+    ingresosBrutos: "$120.000.000",
+    ingresosNetos: "$95.000.000",
+    deducciones: "$25.000.000",
+    impuestoPagar: "$18.500.000",
+  };
+
   return (
     <div className="w-full overflow-hidden transition-all duration-300 hover:shadow-lg rounded-lg">
       <div className="bg-gradient-to-r from-green-500 to-green-600 text-white">

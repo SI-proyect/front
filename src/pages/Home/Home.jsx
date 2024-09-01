@@ -6,26 +6,16 @@ import "../../styles/loader.css";
 
 const Home = () => {
   // const authContext = useAuth()
-  const { logout, loading } = useAuth();
+  const { loading } = useAuth();
   // console.log(user);
 
   const { dataPeople, loadingPeople, error } = useNaturalPeople();
-
-  const handleLogout = async () => {
-    try {
-      await logout();
-    } catch (error) {
-      console.error(error.message);
-    }
-
-    // navigate('/login')
-  };
 
   if (loading || loadingPeople) return <div className="loader"></div>;
 
   return (
     <div>
-      <NavBar logout={handleLogout} />
+      <NavBar />
 
       <div className="w-screen m-auto mt-10 px-10 text-black flex justify-between">
         {/* <MenuLeft user={user} /> */}

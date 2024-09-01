@@ -24,7 +24,7 @@ export const PersonDetailProvider = ({ children }) => {
       const fetchData = async () => {
         try {
           const response = await axios.get(
-            "https://api-si-project.onrender.com/clients/".concat(cc)
+            "https://api-5iz8.onrender.com/clients/".concat(cc)
           );
           setDataPerson(response.data); // Guardar los datos de la respuesta
           setLoading(false); // Terminar el indicador de carga
