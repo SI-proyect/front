@@ -1,20 +1,32 @@
 import icoEdit from "../../assets/ico/ico_edit.png";
+import icoDelete from "../../assets/ico/ico_trash_red.png";
+
 import PropTypes from "prop-types";
 
-const PersonalInformation = ({ dataPerson }) => {
+const PersonalInformation = ({ dataPerson, setAnswerDelete }) => {
   return (
     <div className="border-b border-gray-200 px-4 py-5 sm:p-6">
       <div className="flex justify-between items-center mb-4">
         <h4 className="text-lg leading-6 font-medium text-gray-900">
           Información Personal
         </h4>
-        <button
-          // onClick={() => setIsEditing(!isEditing)}
-          className="flex gap-2 items-center text-green-600 hover:text-green-700 hover:border-green-600 transition-colors duration-200"
-        >
-          <img src={icoEdit} alt="Ico editar" />
-          Editar
-        </button>
+        <div className="flex gap-3">
+          <button
+            // onClick={() => setIsEditing(!isEditing)}
+            className="flex gap-2 items-center text-green-600 hover:text-green-700 hover:border-green-600 transition-colors duration-200"
+          >
+            <img src={icoEdit} alt="Ico editar" />
+            Editar
+          </button>
+
+          <button
+            onClick={() => setAnswerDelete(true)}
+            className="flex gap-2 items-center text-red-600 hover:text-red-700 hover:border-red-600 transition-colors duration-200"
+          >
+            <img src={icoDelete} alt="Ico editar" />
+            Eliminar
+          </button>
+        </div>
       </div>
       <dl className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
         {[
@@ -59,6 +71,7 @@ PersonalInformation.propTypes = {
     cc: PropTypes.number.isRequired,
     telephone: PropTypes.number.isRequired,
   }).isRequired,
+  setAnswerDelete: PropTypes.func.isRequired,
 };
 
 export default PersonalInformation;

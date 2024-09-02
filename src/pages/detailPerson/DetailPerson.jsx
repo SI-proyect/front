@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../../context/authContext";
 import { usePersonDetail } from "../../context/PersonDetailContext";
-import { useParams } from "react-router-dom";
+import { useNaturalPerson } from "../../context/NaturalPersonContext";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   NavBar,
   PersonalInformation,
@@ -9,6 +10,7 @@ import {
   DeclaracionRenta,
   Rut,
   UpDocuments,
+  PopUpError,
 } from "./index";
 import "../../styles/loader.css";
 
@@ -20,6 +22,12 @@ const DetailPerson = () => {
 
   const { cc } = useParams();
 
+  const [answerDelete, setAnswerDelete] = useState(false);
+
+  const { setCCDelete, deleteClient } = useNaturalPerson();
+
+  const [loadView, setLoadView] = useState(false);
+
   // Mover la llamada a setCC dentro de useEffect
   useEffect(() => {
     if (cc) {
@@ -27,7 +35,28 @@ const DetailPerson = () => {
     }
   }, [cc, setCC]); // Dependencia de cc y setCC
 
-  if (loadingPerson) return <div className="loader"></div>;
+  const navigate = useNavigate();
+
+  const redirectToHome = () => {
+    navigate("/");
+  };
+
+  useEffect(() => {
+    if (cc) {
+      setCCDelete(cc);
+    }
+  }, [cc, setCCDelete]);
+
+  const handleDelete = async () => {
+    setLoadView(true);
+    await deleteClient();
+    setAnswerDelete(false);
+    setLoadView(false);
+    redirectToHome();
+  };
+
+  if (loadingPerson || loadView) return <div className="loader"></div>;
+
   if (error)
     return (
       <h1 className="text-2xl font-semibold m-auto text-center">
@@ -37,6 +66,14 @@ const DetailPerson = () => {
 
   return (
     <div>
+      {answerDelete ? (
+        <PopUpError
+          title="Eliminar"
+          desc="¿Estás seguro de eliminar este cliente?"
+          handleCerrar={handleDelete}
+          button="Eliminar"
+        />
+      ) : null}
       <NavBar />
 
       <div className="mt-6 flex flex-wrap justify-around items-start gap-6">
@@ -53,7 +90,10 @@ const DetailPerson = () => {
             </div>
           </div>
 
-          <PersonalInformation dataPerson={dataPerson} />
+          <PersonalInformation
+            dataPerson={dataPerson}
+            setAnswerDelete={setAnswerDelete}
+          />
         </div>
 
         <div className="w-5/12 h-fit">

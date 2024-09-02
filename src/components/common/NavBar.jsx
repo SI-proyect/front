@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 
@@ -29,10 +28,6 @@ const NavBar = () => {
       </button>
     </div>
   );
-};
-
-NavBar.propTypes = {
-  logout: PropTypes.func.isRequired,
 };
 
 export default NavBar;

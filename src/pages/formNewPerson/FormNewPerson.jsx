@@ -1,8 +1,47 @@
-import NavBar from "../../components/common/NavBar";
+import { NavBar, PopUpSuccess, PopUpError } from "./index";
+import { useNaturalPerson } from "../../context/NaturalPersonContext";
+import { useNavigate } from "react-router-dom";
 
 const FormNewPerson = () => {
+  const {
+    createClient,
+    setClient,
+    error,
+    load,
+    statusCode,
+    handleErrorChange,
+  } = useNaturalPerson();
+
+  const navigate = useNavigate();
+
+  const redirectToHome = () => {
+    navigate("/");
+  };
+
+  const redirectToCreate = () => {
+    handleErrorChange();
+    navigate("/addPerson");
+  };
+
+  if (load) return <div className="loader"></div>;
   return (
     <div className="w-full">
+      {statusCode === 201 ? (
+        <PopUpSuccess
+          title="Exito"
+          desc="El cliente se ha guardado correctamente"
+          handleCerrar={redirectToHome}
+        />
+      ) : null}
+
+      {statusCode === 400 || error ? (
+        <PopUpError
+          title="Ups"
+          desc="Hubo algún error al guardar el cliente. Por favor ingrese los datos de nuevo"
+          handleCerrar={redirectToCreate}
+        />
+      ) : null}
+
       <NavBar />
 
       <div className="w-1/3 bg-white max-w-4xl mx-auto mt-7 shadow-lg">
@@ -15,7 +54,7 @@ const FormNewPerson = () => {
         <div className="p-6">
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-4">
-              <div className="space-y-2 flex flex-col">
+              {/* <div className="space-y-2 flex flex-col">
                 <label htmlFor="id" className="text-sm font-medium">
                   ID
                 </label>
@@ -25,7 +64,7 @@ const FormNewPerson = () => {
                   placeholder="Ingrese el ID"
                   className="px-2 py-2 border border-gray-200 rounded-lg transition-all duration-200 focus:ring-2 focus:ring-green-500"
                 />
-              </div>
+              </div> */}
               <div className="space-y-2 flex flex-col">
                 <label htmlFor="cc" className="text-sm font-medium">
                   CC
@@ -33,6 +72,12 @@ const FormNewPerson = () => {
                 <input
                   id="cc"
                   type="number"
+                  onChange={(e) =>
+                    setClient((prevState) => ({
+                      ...prevState,
+                      cc: e.target.value,
+                    }))
+                  }
                   placeholder="Ingrese el CC"
                   className="px-2 py-2 border border-gray-200 rounded-lg transition-all duration-200 focus:ring-2 focus:ring-green-500"
                 />
@@ -44,6 +89,12 @@ const FormNewPerson = () => {
                 <input
                   id="nit"
                   type="number"
+                  onChange={(e) =>
+                    setClient((prevState) => ({
+                      ...prevState,
+                      nit: e.target.value,
+                    }))
+                  }
                   placeholder="Ingrese el NIT"
                   className="px-2 py-2 border border-gray-200 rounded-lg transition-all duration-200 focus:ring-2 focus:ring-green-500"
                 />
@@ -54,6 +105,12 @@ const FormNewPerson = () => {
                 </label>
                 <input
                   id="name"
+                  onChange={(e) =>
+                    setClient((prevState) => ({
+                      ...prevState,
+                      name: e.target.value,
+                    }))
+                  }
                   placeholder="Ingrese el nombre completo"
                   className="px-2 py-2 border border-gray-200 rounded-lg transition-all duration-200 focus:ring-2 focus:ring-green-500"
                 />
@@ -64,6 +121,12 @@ const FormNewPerson = () => {
                 </label>
                 <input
                   id="address"
+                  onChange={(e) =>
+                    setClient((prevState) => ({
+                      ...prevState,
+                      address: e.target.value,
+                    }))
+                  }
                   placeholder="Ingrese la dirección"
                   className="px-2 py-2 border border-gray-200 rounded-lg transition-all duration-200 focus:ring-2 focus:ring-green-500"
                 />
@@ -77,6 +140,12 @@ const FormNewPerson = () => {
                 <input
                   id="telephone"
                   type="tel"
+                  onChange={(e) =>
+                    setClient((prevState) => ({
+                      ...prevState,
+                      telephone: e.target.value,
+                    }))
+                  }
                   placeholder="Ingrese el número de teléfono"
                   className="px-2 py-2 border border-gray-200 rounded-lg transition-all duration-200 focus:ring-2 focus:ring-green-500"
                 />
@@ -88,6 +157,12 @@ const FormNewPerson = () => {
                 <input
                   id="mail"
                   type="email"
+                  onChange={(e) =>
+                    setClient((prevState) => ({
+                      ...prevState,
+                      mail: e.target.value,
+                    }))
+                  }
                   placeholder="Ingrese el correo electrónico"
                   className="px-2 py-2 border border-gray-200 rounded-lg transition-all duration-200 focus:ring-2 focus:ring-green-500"
                 />
@@ -110,6 +185,12 @@ const FormNewPerson = () => {
                 </label>
                 <textarea
                   id="notes"
+                  onChange={(e) =>
+                    setClient((prevState) => ({
+                      ...prevState,
+                      notes: e.target.value,
+                    }))
+                  }
                   placeholder="Ingrese notas adicionales"
                   className="px-2 py-2 border border-gray-200 rounded-lg min-h-[100px] transition-all duration-200 focus:ring-2 focus:ring-green-500"
                 />
@@ -119,6 +200,12 @@ const FormNewPerson = () => {
                   id="fiscal_responsibilities"
                   className="text-green-500 focus:ring-green-500"
                   type="checkbox"
+                  onChange={(e) =>
+                    setClient((prevState) => ({
+                      ...prevState,
+                      fiscal_responsibilities: e.target.checked,
+                    }))
+                  }
                   name="fiscal_responsibilities"
                   value="false"
                 />
@@ -133,7 +220,10 @@ const FormNewPerson = () => {
           </div>
         </div>
         <div className="w-full pb-4 flex justify-center bg-gray-50">
-          <button className="w-1/2 py-2 bg-green-500 hover:bg-green-600 text-white rounded-md transition-colors duration-200">
+          <button
+            onClick={createClient}
+            className="w-1/2 py-2 bg-green-500 hover:bg-green-600 text-white rounded-md transition-colors duration-200"
+          >
             Enviar Formulario
           </button>
         </div>

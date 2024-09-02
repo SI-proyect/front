@@ -6,3 +6,4 @@ export { default as PersonComment } from "../../components/detailPerson/PersonCo
 export { default as DeclaracionRenta } from "../../components/detailPerson/DeclaracionRenta.jsx";
 export { default as Rut } from "../../components/detailPerson/Rut.jsx";
 export { default as UpDocuments } from "../../components/detailPerson/UpDocuments.jsx";
+export { default as PopUpError } from "../../components/common/PopUpError.jsx";

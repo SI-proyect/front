@@ -1,5 +1,3 @@
-import PropTypes from "prop-types";
-
 const DeclaracionRenta = () => {
   const dataDeclaracion = {
     ingresosBrutos: "$120.000.000",
@@ -56,15 +54,6 @@ const DeclaracionRenta = () => {
       </div>
     </div>
   );
-};
-
-DeclaracionRenta.propTypes = {
-  dataDeclaracion: PropTypes.shape({
-    ingresosBrutos: PropTypes.number.isRequired,
-    ingresosNetos: PropTypes.number.isRequired,
-    deducciones: PropTypes.number.isRequired,
-    impuestoPagar: PropTypes.number.isRequired,
-  }).isRequired,
 };
 
 export default DeclaracionRenta;

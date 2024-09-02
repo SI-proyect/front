@@ -10,6 +10,7 @@ import {
 import { AuthProvider } from "./context/authContext";
 import { NaturalPeopleProvider } from "./context/NaturalPeopleContext";
 import { PersonDetailProvider } from "./context/PersonDetailContext";
+import { NaturalPersonProvider } from "./context/NaturalPersonContext";
 
 const App = () => {
   return (
@@ -32,9 +33,11 @@ const App = () => {
               path="/person/:cc"
               element={
                 <PersonDetailProvider>
-                  <ProtectedRoute>
-                    <DetailPerson />
-                  </ProtectedRoute>
+                  <NaturalPersonProvider>
+                    <ProtectedRoute>
+                      <DetailPerson />
+                    </ProtectedRoute>
+                  </NaturalPersonProvider>
                 </PersonDetailProvider>
               }
             />
@@ -42,11 +45,11 @@ const App = () => {
             <Route
               path="/addPerson"
               element={
-                <NaturalPeopleProvider>
+                <NaturalPersonProvider>
                   <ProtectedRoute>
                     <FormNewPerson />
                   </ProtectedRoute>
-                </NaturalPeopleProvider>
+                </NaturalPersonProvider>
               }
             />
             <Route path="/login" element={<Login />} />
