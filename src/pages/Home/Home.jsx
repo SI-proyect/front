@@ -14,18 +14,18 @@ const Home = () => {
   if (loading || loadingPeople) return <div className="loader"></div>;
 
   return (
-    <div>
+    <div className="w-full pb-3">
       <NavBar />
 
-      <div className="w-screen m-auto mt-10 px-10 text-black flex justify-between">
+      <div className="w-full mt-10 text-black flex justify-between">
         {/* <MenuLeft user={user} /> */}
 
         {error ? (
-          <h1 className="text-2xl font-semibold m-auto text-center">
+          <h1 className="text-2xl font-semibold text-center">
             Hubo un error al traer los clientes..
           </h1>
         ) : (
-          <div className="w-full flex flex-col md:flex-row gap-5 md:gap-0 justify-center md:justify-evenly">
+          <div className="w-full flex flex-col md:flex-row md:gap-0 justify-center md:justify-evenly">
             <ListPersons naturalPeople={dataPeople} />
             <AlertsAllPeople />
           </div>

@@ -14,6 +14,8 @@ export const usePersonDetail = () => {
 
 export const PersonDetailProvider = ({ children }) => {
   const [dataPerson, setDataPerson] = useState(null);
+  const [dataDeclaration, setDataDeclaration] = useState(null);
+  const [dataRut, setDataRut] = useState(null);
   const [cc, setCC] = useState(null);
   const [loadingPerson, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -27,6 +29,19 @@ export const PersonDetailProvider = ({ children }) => {
             "https://api-5iz8.onrender.com/clients/".concat(cc)
           );
           setDataPerson(response.data); // Guardar los datos de la respuesta
+
+          const responseDeclaration = await axios.get(
+            `https://api-5iz8.onrender.com/clients/${cc}/declaration`
+          );
+          setDataPerson(response.data); // Guardar los datos de la respuesta
+
+          const responseRut = await axios.get(
+            `https://api-5iz8.onrender.com/clients/${cc}/rut`
+          );
+          setDataPerson(response.data); // Guardar los datos de la respuesta
+          setDataDeclaration(responseDeclaration.data);
+          setDataRut(responseRut.data);
+
           setLoading(false); // Terminar el indicador de carga
         } catch (err) {
           setError(err); // Capturar el error en caso de que ocurra
@@ -42,7 +57,14 @@ export const PersonDetailProvider = ({ children }) => {
 
   return (
     <PersonDetailContext.Provider
-      value={{ dataPerson, loadingPerson, error, setCC }}
+      value={{
+        dataPerson,
+        dataDeclaration,
+        dataRut,
+        loadingPerson,
+        error,
+        setCC,
+      }}
     >
       {children}
     </PersonDetailContext.Provider>

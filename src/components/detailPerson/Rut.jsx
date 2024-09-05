@@ -3,15 +3,7 @@ import icoTrabajo from "../../assets/ico/ico_work_black.png";
 import icorut from "../../assets/ico/ico_rut_black.png";
 import icoActivity from "../../assets/ico/ico_activity_green.png";
 
-const DeclaracionRenta = ({ nit }) => {
-  const dataRut = {
-    trabajo: "Contador Público",
-    ingresosBrutos: "$120.000.000",
-    ingresosNetos: "$95.000.000",
-    deducciones: "$25.000.000",
-    impuestoPagar: "$18.500.000",
-  };
-
+const Rut = ({ dataRut }) => {
   return (
     <div className="w-full overflow-hidden transition-all duration-300 hover:shadow-lg rounded-lg">
       <div className="bg-gradient-to-r from-green-500 to-green-600 text-white">
@@ -33,11 +25,11 @@ const DeclaracionRenta = ({ nit }) => {
           <div className="flex items-center space-x-3 bg-white p-3 rounded-lg shadow-sm border border-slate-200">
             <img src={icoTrabajo} alt="Ico trabajo" className="w-5" />
 
-            <p>Trabajo:</p>
+            <p>Actividad Económica:</p>
 
             <div>
               <p className="text-sm font-medium text-slate-900">
-                {dataRut.trabajo}
+                {dataRut.primary_economic_activity}
               </p>
             </div>
           </div>
@@ -48,7 +40,9 @@ const DeclaracionRenta = ({ nit }) => {
             <p>NIT:</p>
 
             <div>
-              <p className="text-sm font-medium text-slate-900">{nit}</p>
+              <p className="text-sm font-medium text-slate-900">
+                {dataRut.nit}
+              </p>
             </div>
           </div>
         </div>
@@ -58,13 +52,10 @@ const DeclaracionRenta = ({ nit }) => {
         <div>
           <h3 className="font-medium text-slate-900 mb-2 flex items-center gap-2">
             <img src={icoActivity} alt="Ico activity" className="w-5" />
-            Responsabilidades Fiscales
+            Actividad Económica Segundaria
           </h3>
           <ul className="list-disc list-inside space-y-1 text-sm text-slate-600">
-            <li>Impuesto de renta y complementario régimen ordinario</li>
-            <li>Impuesto sobre las ventas – IVA</li>
-            <li>Retención en la fuente a título de renta</li>
-            <li>Informante de exógena</li>
+            {dataRut.secondary_economic_activity}
           </ul>
         </div>
 
@@ -72,20 +63,22 @@ const DeclaracionRenta = ({ nit }) => {
 
         <div>
           <h3 className="font-medium text-slate-900 mb-2 flex items-center gap-2">
-            Actividad Económica Principal
+            Fecha de actualización
           </h3>
-          <p className="text-sm text-slate-600">
-            6920 - Actividades de contabilidad, teneduría de libros, auditoría
-            financiera y asesoría tributaria
-          </p>
+          <p className="text-sm text-slate-600">{dataRut.date}</p>
         </div>
       </div>
     </div>
   );
 };
 
-DeclaracionRenta.propTypes = {
-  nit: PropTypes.number.isRequired,
+Rut.propTypes = {
+  dataRut: PropTypes.shape({
+    nit: PropTypes.number.isRequired,
+    primary_economic_activity: PropTypes.number.isRequired,
+    secondary_economic_activity: PropTypes.number.isRequired,
+    date: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
-export default DeclaracionRenta;
+export default Rut;

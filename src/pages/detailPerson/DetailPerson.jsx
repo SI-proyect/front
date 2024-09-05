@@ -18,7 +18,8 @@ const DetailPerson = () => {
   // const authContext = useAuth()
   const { user } = useAuth();
 
-  const { dataPerson, loadingPerson, error, setCC } = usePersonDetail();
+  const { dataPerson, dataDeclaration, dataRut, loadingPerson, error, setCC } =
+    usePersonDetail();
 
   const { cc } = useParams();
 
@@ -102,11 +103,11 @@ const DetailPerson = () => {
         </div>
 
         <div className="w-5/12 h-auto">
-          <DeclaracionRenta />
+          <DeclaracionRenta dataDeclaration={dataDeclaration} />
         </div>
 
         <div className="w-5/12 h-auto">
-          <Rut nit={dataPerson.nit} />
+          <Rut dataRut={dataRut} />
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@ const ListPersons = ({ naturalPeople }) => {
   // };
 
   return (
-    <div className="bg-white w-0.95 md:w-5/12 rounded py-3 px-4">
+    <div className="bg-white w-0.95 h-fit md:w-5/12 rounded py-3 px-4">
       <div className="flex justify-between items-center">
         <h1 className="text-xl ml-3">Personas Naturales</h1>
         {/* <button className="bg-lime-600 text-white px-2 py-1">

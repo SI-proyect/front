@@ -15,7 +15,7 @@ const NavBar = () => {
   };
 
   return (
-    <div className="w-screen bg-green-500 flex justify-between py-4 px-3 text-white items-center">
+    <div className="w-full bg-green-500 flex justify-between py-4 px-3 text-white items-center">
       <Link to="/">
         <h2 className="text-2xl font-bold">NPCA</h2>
       </Link>

@@ -11,20 +11,23 @@ import { AuthProvider } from "./context/authContext";
 import { NaturalPeopleProvider } from "./context/NaturalPeopleContext";
 import { PersonDetailProvider } from "./context/PersonDetailContext";
 import { NaturalPersonProvider } from "./context/NaturalPersonContext";
+import { CalendarProvider } from "./context/CalendarContext";
 
 const App = () => {
   return (
     <>
-      <div className="pb-3 bg-slate-200 h-screen text-black flex flex-col items-center">
+      <div className="pb-3 bg-slate-200 h-fit text-black flex flex-col items-center">
         <AuthProvider>
           <Routes>
             <Route
               path="/"
               element={
                 <NaturalPeopleProvider>
-                  <ProtectedRoute>
-                    <Home />
-                  </ProtectedRoute>
+                  <CalendarProvider>
+                    <ProtectedRoute>
+                      <Home />
+                    </ProtectedRoute>
+                  </CalendarProvider>
                 </NaturalPeopleProvider>
               }
             />
