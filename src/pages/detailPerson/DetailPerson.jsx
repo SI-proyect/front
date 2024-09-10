@@ -18,8 +18,28 @@ const DetailPerson = () => {
   // const authContext = useAuth()
   const { user } = useAuth();
 
-  const { dataPerson, dataDeclaration, dataRut, loadingPerson, error, setCC } =
-    usePersonDetail();
+  const {
+    dataPerson,
+    dataDeclaration,
+    dataRut,
+    loadingPerson,
+    error,
+    setCC,
+    loadingDocDecl,
+    errorDocDecl,
+    loadingDocRut,
+    errorDocRut,
+    upDeclaracion,
+    setUpDataDec,
+    loadingUpDataDec,
+    upDataDecError,
+    setUpDataDecError,
+    upRut,
+    setUpDataRut,
+    loadingUpDataRut,
+    upDataRutError,
+    setUpDataRutError,
+  } = usePersonDetail();
 
   const { cc } = useParams();
 
@@ -56,7 +76,15 @@ const DetailPerson = () => {
     redirectToHome();
   };
 
-  if (loadingPerson || loadView) return <div className="loader"></div>;
+  if (
+    loadingPerson ||
+    loadView ||
+    loadingDocDecl ||
+    loadingDocRut ||
+    loadingUpDataDec ||
+    loadingUpDataRut
+  )
+    return <div className="loader"></div>;
 
   if (error)
     return (
@@ -97,17 +125,31 @@ const DetailPerson = () => {
           />
         </div>
 
+        <div className="w-5/12 h-fit">Alertas de usuario</div>
+
         <div className="w-5/12 h-fit">
           <PersonComment comment={dataPerson.notes} user={user} />
-          <UpDocuments />
+          <UpDocuments
+            upDeclaracion={upDeclaracion}
+            setUpDataDec={setUpDataDec}
+            upDataDecError={upDataDecError}
+            setUpDataDecError={setUpDataDecError}
+            upRut={upRut}
+            setUpDataRut={setUpDataRut}
+            upDataRutError={upDataRutError}
+            setUpDataRutError={setUpDataRutError}
+          />
         </div>
 
         <div className="w-5/12 h-auto">
-          <DeclaracionRenta dataDeclaration={dataDeclaration} />
+          <DeclaracionRenta
+            dataDeclaration={dataDeclaration}
+            errorDocDecl={errorDocDecl}
+          />
         </div>
 
         <div className="w-5/12 h-auto">
-          <Rut dataRut={dataRut} />
+          <Rut dataRut={dataRut} errorDocRut={errorDocRut} />
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import icoDanger from "../../assets/ico/ico_danger_red.png";
 
 const PopUpError = ({ title, desc, handleCerrar, button }) => {
   return (
-    <div className="bg-white/80 absolute w-full h-full flex justify-center items-center ">
+    <div className="bg-white/80 fixed top-0 left-0 w-screen h-screen flex justify-center items-center ">
       <div className="py-3 px-4 w-1/4 bg-white flex flex-col gap-4 border shadow-md">
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2 text-red-600 text-lg font-semibold">

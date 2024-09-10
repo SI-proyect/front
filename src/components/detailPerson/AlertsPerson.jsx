@@ -1,35 +1,9 @@
-// import { Link } from "react-router-dom";
 import icoCampana from "../../assets/ico/ico_campana.png";
 import icoWarning from "../../assets/ico/ico_warning_orange.png";
 import icoInfo from "../../assets/ico/ico_info_blue.png";
 import icoDanger from "../../assets/ico/ico_danger_red.png";
-import { useCalendar } from "../../context/CalendarContext";
 
-const AlertsAllPeople = () => {
-  const { dataCalendar, loadingCalendar, error } = useCalendar();
-
-  // console.log(dataCalendar);
-
-  const today = new Date();
-
-  const getDaysDifference = (date1, date2) => {
-    const timeDiff = Math.abs(date2.getTime() - date1.getTime());
-    return Math.ceil(timeDiff / (1000 * 3600 * 24));
-  };
-
-  if (loadingCalendar)
-    return (
-      <div className="bg-white w-5/12 h-fit rounded py-3 px-4">
-        <p>Cargando...</p>
-      </div>
-    );
-  if (error)
-    return (
-      <div className="bg-white w-5/12 h-fit rounded py-3 px-4">
-        <p>Ha ocurrido un error: {error.message}</p>
-      </div>
-    );
-
+const DeclaracionRenta = ({ alerts, errorAlerts }) => {
   return (
     <div className="bg-white w-0.95 h-fit md:w-5/12 rounded py-3 px-4">
       <div className="flex justify-between items-center">
@@ -90,4 +64,4 @@ const AlertsAllPeople = () => {
   );
 };
 
-export default AlertsAllPeople;
+export default DeclaracionRenta;

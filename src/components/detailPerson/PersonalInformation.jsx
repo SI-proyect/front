@@ -1,4 +1,4 @@
-import icoEdit from "../../assets/ico/ico_edit.png";
+// import icoEdit from "../../assets/ico/ico_edit.png";
 import icoDelete from "../../assets/ico/ico_trash_red.png";
 
 import PropTypes from "prop-types";
@@ -11,13 +11,13 @@ const PersonalInformation = ({ dataPerson, setAnswerDelete }) => {
           Información Personal
         </h4>
         <div className="flex gap-3">
-          <button
+          {/* <button
             // onClick={() => setIsEditing(!isEditing)}
             className="flex gap-2 items-center text-green-600 hover:text-green-700 hover:border-green-600 transition-colors duration-200"
           >
             <img src={icoEdit} alt="Ico editar" />
             Editar
-          </button>
+          </button> */}
 
           <button
             onClick={() => setAnswerDelete(true)}

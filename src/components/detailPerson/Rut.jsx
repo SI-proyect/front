@@ -3,7 +3,27 @@ import icoTrabajo from "../../assets/ico/ico_work_black.png";
 import icorut from "../../assets/ico/ico_rut_black.png";
 import icoActivity from "../../assets/ico/ico_activity_green.png";
 
-const Rut = ({ dataRut }) => {
+const Rut = ({ dataRut, errorDocRut }) => {
+  if (errorDocRut !== null || dataRut === null)
+    return (
+      <div className="w-full overflow-hidden transition-all duration-300 hover:shadow-lg rounded-lg">
+        <div className="bg-gradient-to-r from-green-500 to-green-600 text-white">
+          <div className="py-6 pl-4 text-xl flex items-center gap-2">
+            Registro único tributario
+          </div>
+          <div className="p-4 bg-white">
+            <div className="grid grid-cols-2 gap-4 ">
+              <div className="bg-white p-3 rounded-lg shadow-sm border border-slate-200">
+                <p className="text-xs font-medium text-slate-500 mb-1">
+                  No hay datos para mostrar
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+
   return (
     <div className="w-full overflow-hidden transition-all duration-300 hover:shadow-lg rounded-lg">
       <div className="bg-gradient-to-r from-green-500 to-green-600 text-white">
@@ -78,7 +98,8 @@ Rut.propTypes = {
     primary_economic_activity: PropTypes.number.isRequired,
     secondary_economic_activity: PropTypes.number.isRequired,
     date: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
+  errorDocRut: PropTypes.shape,
 };
 
 export default Rut;

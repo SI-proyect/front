@@ -16,7 +16,7 @@ import { CalendarProvider } from "./context/CalendarContext";
 const App = () => {
   return (
     <>
-      <div className="pb-3 bg-slate-200 h-fit text-black flex flex-col items-center">
+      <div className="pb-3 bg-slate-200 h-full text-black flex flex-col items-center">
         <AuthProvider>
           <Routes>
             <Route

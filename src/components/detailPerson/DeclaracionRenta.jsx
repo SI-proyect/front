@@ -1,6 +1,34 @@
 import PropTypes from "prop-types";
 
-const DeclaracionRenta = ({ dataDeclaration }) => {
+const DeclaracionRenta = ({ dataDeclaration, errorDocDecl }) => {
+  // console.log("dataDeclaration---------->", dataDeclaration);
+
+  // console.log("---------->", errorDocDecl);
+
+  if (
+    errorDocDecl !== null ||
+    dataDeclaration === null ||
+    dataDeclaration.length === 0
+  )
+    return (
+      <div className="w-full overflow-hidden transition-all duration-300 hover:shadow-lg rounded-lg">
+        <div className="bg-gradient-to-r from-green-500 to-green-600 text-white">
+          <div className="py-6 pl-4 text-xl flex items-center gap-2">
+            Declaración de Renta
+          </div>
+          <div className="p-4 bg-white">
+            <div className="grid grid-cols-2 gap-4 ">
+              <div className="bg-white p-3 rounded-lg shadow-sm border border-slate-200">
+                <p className="text-xs font-medium text-slate-500 mb-1">
+                  No hay datos para mostrar
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+
   dataDeclaration = dataDeclaration[0];
 
   console.log(dataDeclaration);
@@ -91,7 +119,8 @@ DeclaracionRenta.propTypes = {
       net_income_tax: PropTypes.number.isRequired,
       uvt: PropTypes.number.isRequired,
     })
-  ).isRequired,
+  ),
+  errorDocDecl: PropTypes.shape,
 };
 
 export default DeclaracionRenta;
