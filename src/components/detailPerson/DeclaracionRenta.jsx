@@ -37,7 +37,7 @@ const DeclaracionRenta = ({ dataDeclaration, errorDocDecl }) => {
     <div className="w-full overflow-hidden transition-all duration-300 hover:shadow-lg rounded-lg">
       <div className="bg-gradient-to-r from-green-500 to-green-600 text-white">
         <div className="py-6 pl-4 text-xl flex items-center gap-2">
-          Declaración de Renta
+          Declaración de Renta {dataDeclaration.date.toString().slice(0, 4)}
         </div>
       </div>
       <div className="p-4 bg-white">
