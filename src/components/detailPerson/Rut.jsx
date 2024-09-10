@@ -72,7 +72,7 @@ const Rut = ({ dataRut, errorDocRut }) => {
         <div>
           <h3 className="font-medium text-slate-900 mb-2 flex items-center gap-2">
             <img src={icoActivity} alt="Ico activity" className="w-5" />
-            Actividad Económica Segundaria
+            Actividad Económica Secundaria
           </h3>
           <ul className="list-disc list-inside space-y-1 text-sm text-slate-600">
             {dataRut.secondary_economic_activity}
