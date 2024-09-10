@@ -42,7 +42,7 @@ const Register = () => {
   };
 
   return (
-    <div className="w-full max-w-xs m-auto">
+    <div className="w-full mt-20 max-w-xs m-auto">
       {error && <Alert message={error} />}
 
       <form
