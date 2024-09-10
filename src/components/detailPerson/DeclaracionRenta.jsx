@@ -97,6 +97,24 @@ const DeclaracionRenta = ({ dataDeclaration, errorDocDecl }) => {
           </div>
 
           <div className="bg-white p-3 rounded-lg shadow-sm border border-slate-200">
+            <p className="text-xs font-medium text-slate-500 mb-1">
+              Beneficio de auditoria anual
+            </p>
+            <p className="text-lg font-semibold text-slate-900">
+              {dataDeclaration.anual_auditory_benefits}
+            </p>
+          </div>
+
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-slate-200">
+            <p className="text-xs font-medium text-slate-500 mb-1">
+              Beneficio de auditoria semestral
+            </p>
+            <p className="text-lg font-semibold text-slate-900">
+              {dataDeclaration.semestrals_auditory_benefits}
+            </p>
+          </div>
+
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-slate-200">
             <p className="text-xs font-medium text-slate-500 mb-1">UVT</p>
             <p className="text-lg font-semibold text-slate-900">
               {dataDeclaration.uvt}
