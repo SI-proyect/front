@@ -38,23 +38,25 @@ const AlertsAllPeople = () => {
       </div>
       <ul className="divide-y mt-4 flex flex-col gap-2 divide-gray-100 w-all">
         {dataCalendar.map((alert, index) => {
+          alert = alert[0];
           const alertDate = new Date(alert.date);
           // const isToday = alertDate.toDateString() === today.toDateString();
           const daysDifference = getDaysDifference(today, alertDate);
           // console.log(daysDifference);
 
-          if (alertDate < today && daysDifference > 3) {
-            return null;
-          }
+          // if (alertDate < today && daysDifference > 3) {
+          //   return null;
+          // }
           return (
             <li key={index} className="flex flex-col gap-3">
               {daysDifference >= 30 && daysDifference <= 60 ? (
-                <div className="flex items-center space-x-4 bg-yellow-100 p-3 rounded-md">
+                <div className="flex items-center space-x-4 gap-4 bg-yellow-100 p-3 rounded-md">
                   <img src={icoWarning} alt="Ico warning" className="w-5" />
                   <p className="text-sm text-yellow-600">
-                    Para el digito {alert.digits} hay plazo hasta el{" "}
+                    {/* Para el digito {alert.digits} hay plazo hasta el{" "}
                     {alert.date}. Tienes al cliente {alert.name} con
-                    identificación {alert.cc}
+                    identificación {alert.cc} */}
+                    {alert.message}
                   </p>
                 </div>
               ) : null}
@@ -63,9 +65,10 @@ const AlertsAllPeople = () => {
                 <div className="flex items-center space-x-4 bg-blue-100 p-3 rounded-md">
                   <img src={icoInfo} alt="Ico info" className="w-5" />
                   <p className="text-sm text-blue-600">
-                    Para el digito {alert.digits} hay plazo hasta el{" "}
+                    {/* Para el digito {alert.digits} hay plazo hasta el{" "}
                     {alert.date}. Tienes al cliente {alert.name} con
-                    identificación {alert.cc}
+                    identificación {alert.cc} */}
+                    {alert.message}
                   </p>
                 </div>
               ) : null}
@@ -73,11 +76,12 @@ const AlertsAllPeople = () => {
               {daysDifference < 30 ? (
                 <div className="flex items-center space-x-4 bg-red-100 p-3 rounded-md">
                   <img src={icoDanger} alt="Ico danger" className="w-5" />
-                  <p className="text-sm text-red-600">
+                  {/* <p className="text-sm text-red-600">
                     Para el digito {alert.digits} hay plazo hasta el{" "}
                     {alert.date}. Tienes al cliente {alert.name} con
                     identificación {alert.cc}
-                  </p>{" "}
+                  </p>{" "} */}
+                  {alert.message}
                 </div>
               ) : (
                 <></>

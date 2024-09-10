@@ -1,4 +1,5 @@
-import { useState } from "react";
+// import { useState } from "react";
+import PropTypes from "prop-types";
 import icoUpload from "../../assets/ico/ico_upload_black.png";
 import PopUpError from "../../components/common/PopUpError";
 import PopUpSuccess from "../../components/common/PopUpSuccess";
@@ -19,6 +20,7 @@ const UpDocuments = ({
 
   const handleCerrar = () => {
     setUpDataDecError(null);
+    setUpDataRutError(null);
     refreshPage();
   };
 
@@ -35,6 +37,26 @@ const UpDocuments = ({
       )}
 
       {upDataDecError === true ? (
+        <PopUpError
+          title="Error"
+          desc="Hubo algún problema... Por favor, intenta de nuevo."
+          handleCerrar={handleCerrar}
+        />
+      ) : (
+        <></>
+      )}
+
+      {upDataRutError === false ? (
+        <PopUpSuccess
+          title="Exito"
+          desc="Se subieron los datos del RUT correctamente"
+          handleCerrar={handleCerrar}
+        />
+      ) : (
+        <></>
+      )}
+
+      {upDataRutError === true ? (
         <PopUpError
           title="Error"
           desc="Hubo algún problema... Por favor, intenta de nuevo."
@@ -155,12 +177,25 @@ const UpDocuments = ({
                 type="file"
                 accept=".pdf"
                 className="flex-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold"
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  if (file && file.type === "application/pdf") {
+                    setUpDataRut((prevState) => ({
+                      ...prevState,
+                      file: file,
+                    }));
+                  } else {
+                    // Manejar el caso en que el archivo no sea un PDF
+                    console.error("Por favor, selecciona un archivo PDF.");
+                  }
+                }}
               />
               <div>
                 <div>
                   <button
                     size="icon"
                     className="py-2 px-2 hover:bg-green-50 border-solid border-2 rounded-lg"
+                    onClick={upRut}
                   >
                     <img src={icoUpload} alt="Ico Upload" className="w-5" />
                     {/* <span className="sr-only">Subir RUT</span> */}
@@ -176,6 +211,17 @@ const UpDocuments = ({
       </div>
     </div>
   );
+};
+
+UpDocuments.propTypes = {
+  upDataDecError: PropTypes.bool,
+  upDataRutError: PropTypes.bool,
+  upDeclaracion: PropTypes.func.isRequired,
+  setUpDataDec: PropTypes.func.isRequired,
+  setUpDataDecError: PropTypes.func.isRequired,
+  upRut: PropTypes.func.isRequired,
+  setUpDataRut: PropTypes.func.isRequired,
+  setUpDataRutError: PropTypes.func.isRequired,
 };
 
 export default UpDocuments;
