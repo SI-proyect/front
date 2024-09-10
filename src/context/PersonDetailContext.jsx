@@ -34,6 +34,35 @@ export const PersonDetailProvider = ({ children }) => {
   const [upDataRutError, setUpDataRutError] = useState(null);
   const [loadingUpDataRut, setLoadingUpDataRut] = useState(false);
 
+  const [dataAlertPerson, setDataAlertPerson] = useState(null);
+  const [dataAlertPersonError, setDataAlertPersonError] = useState(null);
+  const [loadingAlertPerson, setLoadingAlertPerson] = useState(true);
+
+  useEffect(() => {
+    if (cc) {
+      // Función para hacer la llamada a la API
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(
+            `https://api-5iz8.onrender.com/clients/${cc}/alerts`
+          );
+
+          setDataAlertPerson(response.data); // Guardar los datos de la respuesta
+          console.log("Data Alert Person:", response.data);
+
+          setLoadingAlertPerson(false); // Terminar el indicador de carga
+        } catch (err) {
+          setDataAlertPersonError(err); // Capturar el error en caso de que ocurra
+          setLoadingAlertPerson(false); // Asegurarse de que se detenga la carga
+        }
+      };
+
+      fetchData(); // Llamar a la función
+    } // else {
+    //   console.log("No hay cc");
+    // }
+  }, [cc]);
+
   useEffect(() => {
     if (cc) {
       // Función para hacer la llamada a la API
@@ -187,6 +216,9 @@ export const PersonDetailProvider = ({ children }) => {
         loadingUpDataRut,
         upDataRutError,
         setUpDataRutError,
+        dataAlertPerson,
+        dataAlertPersonError,
+        loadingAlertPerson,
       }}
     >
       {children}

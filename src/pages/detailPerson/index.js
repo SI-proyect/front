@@ -7,3 +7,4 @@ export { default as DeclaracionRenta } from "../../components/detailPerson/Decla
 export { default as Rut } from "../../components/detailPerson/Rut.jsx";
 export { default as UpDocuments } from "../../components/detailPerson/UpDocuments.jsx";
 export { default as PopUpError } from "../../components/common/PopUpError.jsx";
+export { default as AlertsPerson } from "../../components/detailPerson/AlertsPerson.jsx";

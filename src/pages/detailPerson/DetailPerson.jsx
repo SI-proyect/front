@@ -11,6 +11,7 @@ import {
   Rut,
   UpDocuments,
   PopUpError,
+  AlertsPerson,
 } from "./index";
 import "../../styles/loader.css";
 
@@ -39,6 +40,9 @@ const DetailPerson = () => {
     loadingUpDataRut,
     upDataRutError,
     setUpDataRutError,
+    dataAlertPerson,
+    dataAlertPersonError,
+    loadingAlertPerson,
   } = usePersonDetail();
 
   const { cc } = useParams();
@@ -82,7 +86,8 @@ const DetailPerson = () => {
     loadingDocDecl ||
     loadingDocRut ||
     loadingUpDataDec ||
-    loadingUpDataRut
+    loadingUpDataRut ||
+    loadingAlertPerson
   )
     return <div className="loader"></div>;
 
@@ -125,7 +130,12 @@ const DetailPerson = () => {
           />
         </div>
 
-        <div className="w-5/12 h-fit">Alertas de usuario</div>
+        <div className="w-5/12 h-fit">
+          <AlertsPerson
+            dataAlertPerson={dataAlertPerson}
+            dataAlertPersonError={dataAlertPersonError}
+          />
+        </div>
 
         <div className="w-5/12 h-fit">
           <PersonComment comment={dataPerson.notes} user={user} />
